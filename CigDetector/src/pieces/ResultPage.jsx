@@ -11,7 +11,7 @@ function ResultPage() {
     <div>
       <Header buttonLable='Home' path='/' />
 
-        <div className='flex mt-16 justify-evenly'>
+        <div className='flex flex-wrap mt-16 justify-evenly gap-y-10'>
           {Array.from(images).map( element => <Card key={element.fileName} fileName={element.fileName} isSmoking={element.isSmoking} accurancy = {element.accurancy}/> )}
         </div>
         
