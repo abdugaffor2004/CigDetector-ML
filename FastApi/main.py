@@ -6,6 +6,7 @@ from pathlib import Path
 from ultralytics import YOLO
 import os
 import shutil
+import torch
  
 OUTPUT_DIR = '../CigDetector/public'
 IMAGE_DIR = 'images/'
@@ -57,6 +58,9 @@ model = YOLO(MODEL_PATH)
 @app.post("/upload/")
 async def upload_files(files: List[UploadFile] = File(...)):
     processed_results = []
+    isSmoking = False
+    acuurancy = 0.0
+
     for file in files:
         contents = await file.read()
 
@@ -84,11 +88,22 @@ async def upload_files(files: List[UploadFile] = File(...)):
 
         # Преобразование результатов в JSON-совместимый формат
         for r in results:
+            inf = r.boxes.conf
+            inf1 = r.boxes.cls
+            if 0. in inf1 or 3. in inf1:
+                for i, label in enumerate(inf1):
+                    if label == 0. or label == 3. and max <  inf[i]:
+                        max =  float(inf[i])
+                        acuurancy = max
+                        isSmoking = True
+            else:
+                isSmoking = False
+
             processed_results.append({
                 "image_path": r.path,
-                "orig_shape": r.orig_shape,
-                "speed": r.speed,
-                "fileName": filename
+                "isSmoking": isSmoking,
+                "fileName": filename,
+                "accurancy": acuurancy
             })
 
     return processed_results

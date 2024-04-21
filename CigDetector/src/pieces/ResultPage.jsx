@@ -12,7 +12,7 @@ function ResultPage() {
       <Header buttonLable='Home' path='/' />
 
         <div className='flex mt-16 justify-evenly'>
-          {Array.from(images).map( element => <Card key={element.fileName} fileName={element.fileName}/> )}
+          {Array.from(images).map( element => <Card key={element.fileName} fileName={element.fileName} isSmoking={element.isSmoking} accurancy = {element.accurancy}/> )}
         </div>
         
 
