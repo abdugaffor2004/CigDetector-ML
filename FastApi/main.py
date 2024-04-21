@@ -10,7 +10,7 @@ import torch
  
 OUTPUT_DIR = '../CigDetector/public'
 IMAGE_DIR = 'images/'
-MODEL_PATH = "./best4.pt"
+MODEL_PATH = "./best5.pt"
 
 app = FastAPI()
 
