@@ -6,7 +6,7 @@
 
 - Node.js (v20.8.0)
 - Python (3.12.2)
-- npm
+- npm (10.3.0)
 
 
 ### Установка
@@ -24,7 +24,7 @@ cd /urban-broccoli/
 3. Установите зависимости для клиентской части:
 ```bash
 cd /CigDetector
-npm install
+npm install npm@10.3.0
 ```
 
 4. Установите зависимости для серверной части:
